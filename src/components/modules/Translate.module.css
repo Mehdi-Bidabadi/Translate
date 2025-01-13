@@ -1,0 +1,17 @@
+
+@media (max-width: 480px){
+    .option{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .option select{
+        width: 80%;
+    }
+
+    .language{
+        flex-direction: column;
+        width: 30%;
+    }
+}

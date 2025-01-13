@@ -3,6 +3,7 @@ import Translate from "../modules/Translate";
 function HomePage() {
   return (
     <Translate />
+    
   )
 }
 
