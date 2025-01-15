@@ -3,62 +3,57 @@ import { useEffect, useState } from "react";
 
 import styles from "./Translate.module.css"
 
-function Translate() {
-
-  const [inputLanguage, setInputLanguage] = useState("English")
-  const [outputLanguage, setOutputLanguage] = useState("persian")
-  const [userPrompt, setUserPrompt] = useState("")
-  const [inputText, setInputText] = useState("black")
-  const [result, setResult] = useState("")
-
-  const [language, setLanguage] = useState([])
-
-  const [textProperties, setTextProperties] = useState({
-    fontSize: "text-base",
-    fontColor: "text-black",
-    textAlign: "text-left",
-    fontFamily: "font-sans",
-  });
-
-
-
-
-  useEffect(() => {
-    fetch("http://localhost:9090/translate/get-all-languages")
-      .then((data) => data.json())
-      .then((json) => setLanguage(json))
-
-
-  }, [language.length === 0])
-
-  const updateProperty = (property, value) => {
-    setTextProperties((prev) => ({
-      ...prev,
-      [property]: value,
-    }));
-  };
-
-  const submitHandlerx = async () => {
-    const res = await fetch("http://localhost:9090/translate/translate-text", {
-      method: "POST",
-      body: JSON.stringify({
-        inputLanguage,
-        outputLanguage,
-        userPrompt,
-        inputText,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    const data = await res.json();
-    setResult(data.translatedText)
-
-  };
-
-
-
-
+function Translated() {
+    const [inputLanguage, setInputLanguage] = useState("English")
+      const [outputLanguage, setOutputLanguage] = useState("persian")
+      const [userPrompt, setUserPrompt] = useState("")
+      const [inputText, setInputText] = useState("black")
+      const [result, setResult] = useState("")
+    
+      const [language, setLanguage] = useState([])
+    
+      const [textProperties, setTextProperties] = useState({
+        fontSize: "text-base",
+        fontColor: "text-black",
+        textAlign: "text-left",
+        fontFamily: "font-sans",
+      });
+    
+    
+    
+    
+      useEffect(() => {
+        fetch("http://localhost:9090/translate/get-all-languages")
+          .then((data) => data.json())
+          .then((json) => setLanguage(json))
+    
+    
+      }, [language.length === 0])
+    
+      const updateProperty = (property, value) => {
+        setTextProperties((prev) => ({
+          ...prev,
+          [property]: value,
+        }));
+      };
+    
+      const submitHandlerx = async () => {
+        const res = await fetch("http://localhost:9090/translate/translate-text", {
+          method: "POST",
+          body: JSON.stringify({
+            inputLanguage,
+            outputLanguage,
+            userPrompt,
+            inputText,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        const data = await res.json();
+        setResult(data.translatedText)
+    
+      };
   return (
     <div className="p-4 " >
 
@@ -169,7 +164,6 @@ function Translate() {
       </div>
     </div>
   )
-
 }
 
-export default Translate;
+export default Translated

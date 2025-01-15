@@ -1,9 +1,9 @@
-import Translate from "../modules/Translate";
+import Translated from "../modules/Translated";
+
 
 function HomePage() {
   return (
-    <Translate />
-    
+    <Translated />
   )
 }
 
