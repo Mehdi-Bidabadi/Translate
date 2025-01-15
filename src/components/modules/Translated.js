@@ -23,12 +23,22 @@ function Translated() {
     
     
       useEffect(() => {
-        fetch("http://localhost:9090/translate/get-all-languages")
-          .then((data) => data.json())
-          .then((json) => setLanguage(json))
-    
-    
-      }, [language.length === 0])
+        const fetchLanguages = async () => {
+          try {
+            const response = await fetch("http://localhost:9090/translate/get-all-languages");
+            if (!response.ok) {
+              throw new Error("Failed to fetch languages");
+            }
+            const json = await response.json();
+            setLanguage(json);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+            alert("خطا در دریافت اطلاعات از سرور. لطفاً دوباره تلاش کنید.");
+          }
+        };
+      
+        fetchLanguages();
+      }, []);
     
       const updateProperty = (property, value) => {
         setTextProperties((prev) => ({
